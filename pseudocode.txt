@@ -1,0 +1,27 @@
+READ and WRITE "title" with string 
+READ and WRITE "body" with string 
+READ and WRITE "status" with boolean
+STORE ToDo with record(title, body, status) 
+STORE "choose" with string
+
+IF choose EQUAL "buat_catatan":
+    READ and WRITE "title" with string 
+    READ and WRITE "body" with string 
+    READ and WRITE "status" with boolean
+    STORE ToDo with record(title, body, status)
+ELSE IF choose EQUAL "ubah_catatan":
+    input title with string
+    ToDo [title] {
+        READ and WRITE "title" with string 
+        READ and WRITE "body" with string 
+        READ and WRITE "status" with boolean
+        ToDo [title].edit{
+            title = title
+            body = body
+            status = status
+        }
+    }
+ELSE IF choose EQUAL hapus:
+    input title with string
+    ToDo [title]. delete()
+    
